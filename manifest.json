@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Debt Payoff Guard",
+  "version": "1.0.0",
+  "description": "Pauses you on shopping sites you choose, and tracks how much you've saved by walking away.",
+  "permissions": ["storage"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Debt Payoff Guard"
+  }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Debt Payoff Guard</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Debt Payoff Guard</h1>
+    </header>
+
+    <section id="stats">
+      <div class="stat">
+        <span class="stat-value" id="stat-saved">$0</span>
+        <span class="stat-label">estimated saved</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="stat-avoided">0</span>
+        <span class="stat-label">times avoided</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="stat-continued">0</span>
+        <span class="stat-label">times continued</span>
+      </div>
+    </section>
+
+    <section id="settings">
+      <label for="avg-spend">Typical amount you'd spend per visit</label>
+      <div class="input-row">
+        <span class="prefix">$</span>
+        <input type="number" id="avg-spend" min="0" step="1" />
+      </div>
+
+      <label for="debt-message">Your debt payoff reminder</label>
+      <textarea id="debt-message" rows="3"></textarea>
+      <button id="save-message" class="secondary">Save message</button>
+
+      <label for="site-input">Sites to watch</label>
+      <div class="input-row">
+        <input type="text" id="site-input" placeholder="e.g. amazon.com" />
+        <button id="add-site">Add</button>
+      </div>
+      <ul id="site-list"></ul>
+    </section>
+
+    <button id="reset-stats" class="danger">Reset stats</button>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
