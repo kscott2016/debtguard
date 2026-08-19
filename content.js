@@ -36,10 +36,12 @@
 
   injectOverlay(message, questions, hostname);
 
-  function injectOverlay(questions,site) {
+  function injectOverlay(message, questions,site) {
     const overlay = document.createElement("div");
     overlay.id = "debt-guard-overlay";
+    overlay.classList.add('debt-guard-card');
 
+    overlay.innerHTML= `<div class="debt-guard-card"><p>${escapeHtml(message)}</p>`;
     
     if (index >= questions.length) {
       renderFinalScreen(); // no more questions, show Leave/Continue
@@ -52,35 +54,36 @@
       <button id="q-no">No</button>
     `;
     
-    document.getElementById("q-yes").addEventListener("click", () => {
-      // record the answer here if you want to track it
-      renderQuestion(index + 1); // move to next question ONLY when clicked
-    });
+    // document.getElementById("q-yes").addEventListener("click", () => {
+    //   // record the answer here if you want to track it
+    //   renderQuestion(index + 1); // move to next question ONLY when clicked
+    // });
 
-  document.getElementById("q-no").addEventListener("click", () => {
-    renderQuestion(index + 1);
-  });
+  // document.getElementById("q-no").addEventListener("click", () => {
+  //   renderQuestion(index + 1);
+  // });
   
+    overlay.innerHTML = `</div>`;
     document.documentElement.appendChild(overlay);
 
-    document
-      .getElementById("debt-guard-leave")
-      .addEventListener("click", () => {
-        chrome.runtime.sendMessage({ type: "LOG_ACTION", site, action: "avoided" });
-        window.history.length > 1 ? window.history.back() : window.close();
-        overlay.remove();
-      });
+    // document
+    //   //.getElementById("debt-guard-leave")
+    //   .addEventListener("click", () => {
+    //     chrome.runtime.sendMessage({ type: "LOG_ACTION", site, action: "avoided" });
+    //     window.history.length > 1 ? window.history.back() : window.close();
+    //     overlay.remove();
+    //   });
 
-    document
-      .getElementById("debt-guard-continue")
-      .addEventListener("click", () => {
-        chrome.runtime.sendMessage({
-          type: "LOG_ACTION",
-          site,
-          action: "continued"
-        });
-        overlay.remove();
-      });
+    // document
+    //   .getElementById("debt-guard-continue")
+    //   .addEventListener("click", () => {
+    //     chrome.runtime.sendMessage({
+    //       type: "LOG_ACTION",
+    //       site,
+    //       action: "continued"
+    //     });
+    //     overlay.remove();
+    //   });
   
   }
 
